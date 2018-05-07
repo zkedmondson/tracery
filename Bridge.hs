@@ -1,3 +1,15 @@
+{-|
+Module      : Bridge
+Description : Conversion from my shape types to Gloss.Picture 
+Copyright   : (c) Z. K. Edmondson 2018 
+License     : GPL-3
+Maintainer  : 
+Stability   : experimental
+
+Original Euclidean code didn't follow any pre-existing 
+shape types, so this file provides converters.
+-}
+
 module Bridge where
 
 import Point

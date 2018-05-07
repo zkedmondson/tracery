@@ -1,3 +1,15 @@
+{-|
+Module      : Vis
+Description : Experimenting with Gloss Visualization 
+Copyright   : (c) Z. K. Edmondson 2018 
+License     : GPL-3
+Maintainer  : 
+Stability   : scratchwork
+
+First steps experimenting with Gloss.
+-}
+
+
 module Vis where
 
 import Control.Monad.Writer (runWriter)
@@ -19,11 +31,11 @@ pictureFore = Pictures $
 
 main = display 
         (InWindow
-            "Hello World"   -- window title
-            (400, 150)      -- window size
-            (10, 10))       -- window position
-    white                   -- background color
-    (Pictures [pictureBack, pictureFore])                 -- picture to display
+        "Testing"   -- window title
+        (400, 150)      -- window size
+        (10, 10))       -- window position
+        white                   -- background color
+        (Pictures [pictureBack, pictureFore])                 -- picture to display
 
 --picture=Translate (-170) (-20)    -- shift the text to the middle of the window
 --    $ Scale 0.5 0.5             -- display it half the original size
