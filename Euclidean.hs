@@ -6,7 +6,7 @@ import ListHelpers
 
 import Control.Monad.Writer
 
-data TraceShape = TraceCircle Circle | TraceLine Line | TracePoint Point
+data TraceShape = TraceCircle Circle | TraceLine Line | TracePoint Point | TraceArc Arc
   deriving Show    
 
 type Tracer = Writer [TraceShape]
@@ -65,6 +65,7 @@ inscribeOnce pt circle r =
 
 inscribe :: Int -> Point -> Circle -> Radius -> Tracer [Point]
 inscribe n pt circle radius =
+    tell [TraceCircle circle] >>
     iterateNM n (\pt' -> inscribeOnce pt' circle radius) pt 
 
 inscribeHexagon :: Circle -> Tracer [Point]
