@@ -85,5 +85,8 @@ makeArc r (x:y:z:_) = Arc (Circle r x) y z
 
 trefoilLobe :: Circle -> Circle -> Arc
 trefoilLobe base lobe =
-    let (Just (Line s e)) = commonChord base lobe in
+    let (Just (Line s e)) = commonChord lobe base in
         Arc lobe s e
+
+trefoil :: Radius -> Circle -> Tracer [Arc]
+trefoil (Radius r) c = liftM (map $ trefoilLobe c . Circle (Radius r)) $ inscribeEqTriangle c 
