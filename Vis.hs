@@ -15,24 +15,26 @@ module Vis where
 import Control.Monad.Writer (runWriter)
 
 import Graphics.Gloss
+import Animate
 import qualified Point as Eu 
 import qualified Shapes as Eu
 import qualified Euclidean as Eu
 import Bridge
 
-pictureBack = Color (greyN 0.5) $ Pictures $ 
+pictureBack = gradual 0.0 5.0 $ Color (greyN 0.5) $ Pictures $ 
     map toGloss $ 
-    snd $ runWriter $ Eu.reuleaux $ Eu.Circle (Eu.Radius 50) $ Eu.origin 
+    snd $ runWriter $ Eu.trefoil (Eu.Radius 40) $ Eu.Circle (Eu.Radius 50) $ Eu.origin 
 
-pictureFore = Pictures $ 
+pictureFore = gradual 5.0 10.0 $ Pictures $ 
     map toGloss $ 
-    map Eu.TraceArc $ fst $ runWriter $ Eu.reuleaux $ Eu.Circle (Eu.Radius 50) $ Eu.origin 
+    map Eu.TraceArc $ fst $ runWriter $ Eu.trefoil (Eu.Radius 40) $ Eu.Circle (Eu.Radius 50) $ Eu.origin 
 
+picture x = Pictures $ map ($ x) [pictureFore, pictureBack]
 
-main = display 
+main = animate 
         (InWindow
         "Testing"   -- window title
         (400, 150)      -- window size
         (10, 10))       -- window position
         white                   -- background color
-        (Pictures [pictureBack, pictureFore])                 -- picture to display
+        (picture)                 -- picture to display
